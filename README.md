@@ -19,7 +19,7 @@ Generate your application using Rails-API or Sinatra. You'll need to serve an `i
 
 All of your JS scripts should be referenced from this `index.html` file, either via individual `<script>` tags or via a module loader like [RequireJS](http://requirejs.org/).
 
-You ARE allowed to use third-party libs on this application. Go nuts with CSS grids and frameworks, JS libraries, and premade image assets.
+You ARE allowed to use third-party libs on this application, **but no JS frameworks** (such as Angular or Backbone). Go nuts with CSS grids and CSS frameworks, JS libraries, and premade image assets.
 
 ### Releases
 
