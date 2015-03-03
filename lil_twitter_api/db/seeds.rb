@@ -6,7 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-adell = User.create(handle: 'adell', name: 'adell hanson-kahn', email: 'adell@adell.com', password_digest: 'abc123')
-cordelia = User.create(handle: 'cordelia', name: 'cordelia peters', email: 'cordelia@cordelia.com', password_digest: 'abc123')
-shadi = User.create(handle: 'shadi', name: 'ed shadi', email: 'shadi@shadi.com', password_digest: 'abc123')
-sherif = User.create(handle: 'sherif', name: 'sherif abushadi', email: 'sherif@sherif.com', password_digest: 'abc123')
+adell = User.create(handle: 'adell', name: 'adell hanson-kahn', email: 'adell@adell.com', password: 'abc123')
+cordelia = User.create(handle: 'cordelia', name: 'cordelia peters', email: 'cordelia@cordelia.com', password: 'abc123')
+shadi = User.create(handle: 'shadi', name: 'ed shadi', email: 'shadi@shadi.com', password: 'abc123')
+sherif = User.create(handle: 'sherif', name: 'sherif abushadi', email: 'sherif@sherif.com', password: 'abc123')
+
+10.times do
+  Post.create(user_id: [*1..4].sample, description: Faker::Hacker.say_something_smart)
+
+end
