@@ -30,14 +30,16 @@
   </div>
 
   <script type="text/x-handlebars-template" id="postTemplate">
-    <div class="post">
+    <div class="post" id="post{{data.id}}">
+      <span class="postHandle">{{data.user_id}}<span></br>
       <span class="postDescription">{{data.description}}</span>
+      <button id="deletePost" href="/users/{{data.user_id}}/posts/{{data.id}}">Delete</button>
     </div>
   </script>
 
   <script type="text/x-handlebars-template" id="newPostTemplate">
     <form id="newPostForm">
-      <p>Hi, {{sessionStorage.current_user_handle}}! Care to share your thoughts?</p>
+      <p>Hi, {{sessionStorage.current_user_handle}}! Care to share your thoughts? </p>
       <input type="textarea" name="description" placeholder="...."></input>
       <button id="sharePost">Share</button>
     </form>

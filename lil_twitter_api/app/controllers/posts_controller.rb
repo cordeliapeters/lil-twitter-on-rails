@@ -12,8 +12,7 @@ class PostsController < ApplicationController
       posts << followed.posts
     end
     posts.order(:created_at)
-    puts "*"*100
-    puts posts
+
     render json: posts, status: 200
   end
 
@@ -35,6 +34,10 @@ class PostsController < ApplicationController
   end
 
   def destroy
+      post = Post.find(params[:id])
+      post.destroy
+
+      render json: post, status: 200
   end
 
 
