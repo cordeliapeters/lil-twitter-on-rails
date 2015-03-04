@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  var api_server = "http://localhost:3000"
   console.log(sessionStorage)
   isLoggedIn = function() {
     return (sessionStorage.current_user != null)
@@ -6,7 +7,7 @@ $(document).ready(function(){
 
   var getFeed = function(){
     $.ajax({
-      url: "http://localhost:3000/feed",
+      url: api_server +"/feed",
       type: 'get',
       dataType: 'json',
       data: {user_id: sessionStorage.current_user}
@@ -38,7 +39,7 @@ $(document).ready(function(){
     event.preventDefault();
     payload = $("#loginForm").serialize();
     $.ajax({
-      url: "http://localhost:3000/login",
+      url: api_server +"/login",
       type: "post",
       dataType: "json",
       data: payload
@@ -57,7 +58,7 @@ $(document).ready(function(){
     payload = $("#newPostForm").serialize();
 
     $.ajax({
-      url: "http://localhost:3000/users/"+sessionStorage.current_user+"/posts",
+      url: api_server +"/users/"+sessionStorage.current_user+"/posts",
       type: 'post',
       dataType: 'json',
       data: payload
@@ -78,7 +79,7 @@ $(document).ready(function(){
     var url = $(this).attr("href")
 
     $.ajax({
-      url: "http://localhost:3000"+url,
+      url: api_server +""+url,
       dataType: "json",
       type: "delete"
     }).done(function(response){

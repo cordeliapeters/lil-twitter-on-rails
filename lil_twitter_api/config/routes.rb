@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   post 'login' => "sessions#create"
   delete 'logout' => "sessions#destroy"
   get 'feed' => "posts#feed"
+  match "/users/:user_id/posts/:id" => "posts#destroy", via: :options
 
   resources :users do
+  # match '/users/:user_id/posts/:id', :controller => 'posts', :action => 'options', :constraints => {:method => "OPTIONS"}
     resources :posts
     resources :followers
     resources :followed
