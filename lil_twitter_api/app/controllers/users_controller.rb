@@ -13,6 +13,16 @@ class UsersController < ApplicationController
    end
   end
 
+  def search
+    puts "="*100
+    puts params
+    keywords = params[:userSearchBar].split(" ").map!{|word| "%"+word+"%"}
+    puts keywords
+    matches = User.where('handle ilike any ( array[?] )', keywords)
+    # puts matches
+    render json: matches, status: 200
+  end
+
   def show
   end
 

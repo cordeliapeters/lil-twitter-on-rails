@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20150302232646) do
   create_table "posts", force: :cascade do |t|
     t.string   "description"
     t.integer  "user_id"
+    t.string   "user_handle"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -23,8 +24,8 @@ ActiveRecord::Schema.define(version: 20150302232646) do
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|

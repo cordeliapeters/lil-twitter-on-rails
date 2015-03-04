@@ -12,6 +12,7 @@ shadi = User.create(handle: 'shadi', name: 'ed shadi', email: 'shadi@shadi.com',
 sherif = User.create(handle: 'sherif', name: 'sherif abushadi', email: 'sherif@sherif.com', password: 'abc123')
 
 10.times do
-  Post.create(user_id: [*1..4].sample, description: Faker::Hacker.say_something_smart)
+  uid = [*1..4].sample
+  Post.create(user_id: uid, user_handle: User.find(uid).handle, description: Faker::Hacker.say_something_smart)
 
 end

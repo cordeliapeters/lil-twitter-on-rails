@@ -23,7 +23,8 @@ class PostsController < ApplicationController
   def create
     puts "="*100
     puts params
-    post = Post.new(description: params[:description], user_id: params[:user_id])
+    user = User.find(params[:user_id])
+    post = Post.new(description: params[:description], user_id: user.id, user_handle: user.handle)
     puts post
     if post.save
       render json: post, status: 200

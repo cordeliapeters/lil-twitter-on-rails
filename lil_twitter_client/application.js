@@ -37,7 +37,7 @@ $(document).ready(function(){
   console.log(isLoggedIn());
   $("#login").on('click', function(event){
     event.preventDefault();
-    payload = $("#loginForm").serialize();
+    var payload = $("#loginForm").serialize();
     $.ajax({
       url: api_server +"/login",
       type: "post",
@@ -55,7 +55,7 @@ $(document).ready(function(){
 
   $(".content").on('click', "#sharePost", function(event){
     event.preventDefault();
-    payload = $("#newPostForm").serialize();
+    var payload = $("#newPostForm").serialize();
 
     $.ajax({
       url: api_server +"/users/"+sessionStorage.current_user+"/posts",
@@ -79,7 +79,7 @@ $(document).ready(function(){
     var url = $(this).attr("href")
 
     $.ajax({
-      url: api_server +""+url,
+      url: api_server+url,
       dataType: "json",
       type: "delete"
     }).done(function(response){
@@ -88,22 +88,47 @@ $(document).ready(function(){
     })
   })
 
-//   e.preventDefault;
-//   var url = $(this).attr("href")
+  $(".content").on('click', '#searchUsers', function(event){
+    event.preventDefault();
+    var url = "/users/search"
+    var payload = $("#searchUsersForm").serialize();
+    $.ajax({
+      url: api_server+url,
+      dataType: 'json',
+      type: 'get',
+      data: payload
+    }).done(function(response){
+      console.log("successfully #searchUsers");
+      $.each(response, function(index, user) {
+        var sourceHTML = $('#userSearchTemplate').html();
+        var templater = Handlebars.compile(sourceHTML);
+        var content = {data: user}
+        $("#userSearchResults").append(templater(content));
+      });
+    }).fail(function(){
+      console.log("unable to #searchUsers");
+    });
+  });
 
-//   $.ajax({
-//     url: url,
-//     dataType: "json",
-//     type: "get"
-//   }).done(function(response){
-//     // append the form to make a new post
-//   }).fail(function(){
-//     alert("you failed");
-//   })
-// })
+  $("#userSearchResults").on('click', '.follow-user', function(response){
+    event.preventDefault();
+    var url = $(this).attr("href");
+    var that = this
+    var payload = $(this).parent().parent().prev().serialize();
 
 
+    $.ajax({
+      url: api_server + url,
+      data: payload,
+      dataType: "json",
+      type: "post"
+    }).done(function(response){
+      console.log("successfully followed a user")
 
+      $(that).html("Followed!")
+       // change button text to "followed!" and make not clickable
+    })
 
+  })
 
 })

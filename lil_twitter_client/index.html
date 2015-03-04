@@ -25,24 +25,43 @@
         <button id="register">register</button>
       </form>
     </div>
-    <div id="feed"></div>
+
+    <form id="searchUsersForm">
+      <input type='textarea' placeholder="search for users" name="userSearchBar"></input><button id="searchUsers">Search</button>
+    </form>
+
+    <div id="userSearchResults">
+    </div>
+
+    <div id="feed">
+    </div>
 
   </div>
 
   <script type="text/x-handlebars-template" id="postTemplate">
-    <div class="post" id="post{{data.id}}">
-      <span class="postHandle">{{data.user_id}}<span></br>
-      <span class="postDescription">{{data.description}}</span>
-      <button id="deletePost" href="/users/{{data.user_id}}/posts/{{data.id}}">Delete</button>
-    </div>
+  <div class="post" id="post{{data.id}}">
+  <span class="postHandle">@{{data.user_handle}}<span></br>
+  <span class="postDescription">{{data.description}}</span>
+  <button id="deletePost" href="/users/{{data.user_id}}/posts/{{data.id}}">Delete</button>
+  </div>
   </script>
 
   <script type="text/x-handlebars-template" id="newPostTemplate">
-    <form id="newPostForm">
-      <p>Hi, {{sessionStorage.current_user_handle}}! Care to share your thoughts? </p>
-      <input type="textarea" name="description" placeholder="...."></input>
-      <button id="sharePost">Share</button>
-    </form>
+  <form id="newPostForm">
+  <p>Hi, {{sessionStorage.current_user_handle}}! Care to share your thoughts? </p>
+  <input type="textarea" name="description" placeholder="...."></input>
+  <button id="sharePost">Share</button>
+  </form>
+  </script>
+
+  <script type="text/x-handlebars-template" id="userSearchTemplate">
+    <div class="searched-user" >
+      <form id="followUser{{data.id}}">
+      <input type="hidden" name="followedUserId" value="{{data.id}}"></input>
+      <span class="user-handle">{{data.handle}}<span></br>
+      <button class="follow-user" href="/users/1/followeds">Follow</button>
+      </form>
+    </div>
   </script>
 
 
